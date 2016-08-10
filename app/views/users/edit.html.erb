@@ -1,0 +1,8 @@
+<%= simple_form_for @user do |f| %>
+  <%= f.input :name %>
+  <%= f.input :image %>
+  <% if current_user.admin? %>
+  	<%= f.input :role %>
+  <% end %>
+  <%= f.button :submit %>
+<% end %>

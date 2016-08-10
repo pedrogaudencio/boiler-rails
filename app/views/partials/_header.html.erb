@@ -1,0 +1,19 @@
+<%= nav_bar fixed: :top, brand: "boiler.rails", url: root_path, responsive: true do %>
+    <%= menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_divider %>
+        <%= menu_item "About Us", '#' %>
+        <%= menu_item "Contact", '#' %>
+    <% end %>
+        <%= menu_group pull: :right do %>
+            <% if current_user %>
+                <%= drop_down current_user.name || current_user.email do %>
+                    <%= menu_item "Profile", user_path(current_user) %>
+                    <%= menu_item "Edit profile", edit_user_path(current_user) %>
+        	        <%= menu_item "Log Out", destroy_user_session_path, method: :delete %>
+                <% end %>
+            <% else %>
+                <%= menu_item "Login", new_user_session_path %>
+            <% end %>
+        <% end %>
+<% end %>
